@@ -61,7 +61,7 @@ public:
     using ADD = CanAdd;
 };
 template<class T,
-    class C = typename std::enable_if<std::is_same<CanAdd, typename T::ADD>::value>::type
+    class C = typename std::enable_if<std::is_same<CanAdd, typename T::ADD>::value>::type//脱裤子放屁一下
 >
 T add(T && a, T && b) // #1
 {
