@@ -21,7 +21,7 @@ glibc实现的线程安全，每个线程都尽可能有自己的空间，同时
 
 [glibc文档](https://sourceware.org/glibc/wiki/MallocInternals)
 
-测试 4*sizeof(void*)，记得在GNU/linux
+测试 4 * sizeof(void*)，记得在GNU/linux
 ```c++
 #include<stdlib.h>
 #include<iostream>
