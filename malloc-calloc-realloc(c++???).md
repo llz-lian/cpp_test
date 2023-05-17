@@ -18,6 +18,7 @@ mmap为内存映射。
 glibc实现的线程安全，每个线程都尽可能有自己的空间，同时会加锁和使用原子变量。
 
 [深入理解 glibc malloc：内存分配器实现原理](https://zhuanlan.zhihu.com/p/443235305)
+
 [glibc文档](https://sourceware.org/glibc/wiki/MallocInternals)
 
 测试 4*sizeof(void*)，记得在GNU/linux
