@@ -7,7 +7,59 @@
 1. 调用operator new申请内存
 2. 在内存上初始化对象
 3. 返回指针
+## operator new 细节
+在GNU libc++中默认用malloc进行内存分配。
+在编译时使用{`--enable-libstdcxx-static-eh-pool`}可以让异常的分配使用一个静态的缓冲区。
+
+
+茴的n种写法
+
+c++ 98里
+1. void* operator new(std::size_t);
+2. void* operator new(std::size_t, std::nothrow_t) noexcept;无异常版本，出问题返回空指针。new (std::nothrow) 
+3. void* operator new[] (std::size_t);
+4. void* operator new[](std::size_t, std::nothrow_t) noexcept;
+5. void* operator new(std::size_t, void*) noexcept; placement new(布置 new)
+6. void* operator new[](std::size_t, void*) noexcept;
+
+普通new内部做如下工作:
+
+首先尝试分配内存，如果分配失败，尝试调用注册的new-handler，再不行就抛bad_alloc异常。
+```c++
+while (true)
+{
+  if (void* p = /* try to allocate memory */)
+    return p;
+  else if (std::new_handler h = std::get_new_handler ())
+    h ();
+  else
+    throw bad_alloc{};
+}
+```
+注册方法如下
+```c++
+typedef void (*PFV)();
+static char*  safety;
+static PFV    old_handler;
+void my_new_handler ()
+{
+    delete[] safety;
+    safety = nullptr;
+    popup_window ("Dude, you are running low on heapmemory.  You"	     " should, like, close some windows, or something."	     " The next time you run out, we're gonna burn!");
+    set_new_handler (old_handler);
+    return;
+}
+int main ()
+{
+    safety = new char[500000];
+    old_handler = set_new_handler (&my_new_handler);
+    ...
+}
+```
+
+
 # delete 关键字
+完全可以delete空指针，标准说的。
 ## operator delete函数
 1. 不是重载delete
 2. 是函数
