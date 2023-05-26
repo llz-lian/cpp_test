@@ -36,7 +36,7 @@ constexpr reference emplace_back( Args&&... args );
 ```
 ## 2.使用上
 效率问题
-```
+```c++
 #include <iostream>
 #include <cstring>
 #include <string>
@@ -73,7 +73,7 @@ int main()
 }
 ```
 initialize_list
-```
+```c++
 int main()
 {
     vector<vector<int>> vec;

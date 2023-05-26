@@ -1,3 +1,8 @@
+# 协程
+流程图最好背下来。
+
+cppref：[协程](https://zh.cppreference.com/w/cpp/language/coroutines)
+
 文章1： [Coroutine, 异步，同步，async, await](https://zhuanlan.zhihu.com/p/237067072)
 
 文章2： [使用C++20协程（Coroutine）实现线程池](https://zhuanlan.zhihu.com/p/375279181)
@@ -6,7 +11,7 @@
 
 
 交替执行两个循环
-```
+```c++
 #include<coroutine>
 #include<iostream>
 int iter = 0;
@@ -89,7 +94,7 @@ int main()
 }
 ```
 generator
-```
+```c++
 import <format>;
 import <iostream>;
 import <coroutine>;
