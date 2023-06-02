@@ -21,6 +21,16 @@ c++ 98里
 4. void* operator new[](std::size_t, std::nothrow_t) noexcept;
 5. void* operator new(std::size_t, void*) noexcept; placement new(布置 new)
 6. void* operator new[](std::size_t, void*) noexcept;
+类内还可以继续重载每个版本
+7. void * CLASS::operator new(xxx)xxx;
+调用时根据重载决定使用哪个版本
+调用nothrow版本:
+```
+int * i = new(std::nothrow) int[100000000000];// void* operator new(std::size_t, std::nothrow_t) noexcept;
+// 你最好检查i==nullptr
+```
+
+
 
 普通new内部做如下工作:
 

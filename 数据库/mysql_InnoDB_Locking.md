@@ -1,5 +1,5 @@
 # 先放官方文档：[InnoDB Locking](https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html)
-
+还有一个加锁分析博客存档[MySQL 加锁处理分析](https://www.cnblogs.com/tutar/p/5878651.html)
 # InnoDB的几种锁
 ## 1. 共享锁和独占锁（shared & exclusive locks）
 行级别的两种锁，共享锁（s）允许持有锁的过程对行进行`读取`，独占锁(x)允许对行进行`更新和删除`。
