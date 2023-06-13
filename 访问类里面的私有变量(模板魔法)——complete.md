@@ -1,5 +1,5 @@
 通过模板、友元和成员指针
-```
+```c++
 #include <iostream>
 #include<format>
 class A
